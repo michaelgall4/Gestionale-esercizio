@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GestionaleMyLibrary.School
+namespace GestionaleLibrary.School
 {
     public class Exam : Subject
     {

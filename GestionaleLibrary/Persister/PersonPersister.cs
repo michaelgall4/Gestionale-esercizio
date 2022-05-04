@@ -1,12 +1,8 @@
-﻿using GestionaleMyLibrary.People;
-using System;
-using System.Collections.Generic;
+﻿using GestionaleLibrary.People;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace GestionaleMyLibrary
+
+namespace GestionaleLibrary.Persister
 {
     public class PersonPersister
     {
@@ -30,7 +26,7 @@ namespace GestionaleMyLibrary
                                      @Surname,
                                      @BirthDay,
                                      @Gender)";
-                                     
+
 
             var connection = new SqlConnection(ConnectionString);
             connection.Open();
@@ -71,10 +67,10 @@ namespace GestionaleMyLibrary
             var connection = new SqlConnection(ConnectionString);
             connection.Open();
             var command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Id", 1);
+            command.Parameters.AddWithValue("@Id", IdPerson);
             command.ExecuteNonQuery();
         }
 
-        
+
     }
 }
