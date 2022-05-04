@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gestionale
+namespace GestionaleMyLibrary.People
 {
     public class Teacher : Person
     {
