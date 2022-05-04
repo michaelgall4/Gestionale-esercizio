@@ -15,14 +15,13 @@ namespace GestionaleLibrary.Persister
         public bool Add(Person person)
         {
             var sql = @"INSERT INTO [dbo].[Person](
-                                    [Id],
                                     [Name],
                                     [Surname],
                                     [BirthDay],
                                     [Gender],
                                     [Address])
                               Values
-                                    (@Id,
+                                    (
                                      @Name,
                                      @Surname,
                                      @BirthDay,
@@ -34,7 +33,6 @@ namespace GestionaleLibrary.Persister
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
             using var command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Id", person.Id);
             command.Parameters.AddWithValue("@Name", person.Name);
             command.Parameters.AddWithValue("@Surname", person.Surname);
             command.Parameters.AddWithValue("@BirthDay", person.BirthDay);

@@ -8,7 +8,8 @@ namespace Gestionale
     
     public class PersonHandler
     {
-        private readonly string connectionString = "Server=ACADEMYNETPD03;DataBase=Gestionale;Trusted_Connection=true";
+        //private readonly string connectionString = "Server=ACADEMYNETPD03\\SQLEXPRESS;DataBase=Gestionale;Trusted_Connection=true";
+        private readonly string connectionString = "Server=.;DataBase=Gestionale;Trusted_Connection=true";
 
 
         public bool AddPersona()

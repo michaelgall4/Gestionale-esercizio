@@ -14,13 +14,12 @@ namespace GestionaleLibrary.Persister
         public bool Add(Subject subject)
         {
             var sql = @"INSERT INTO [Gestionale].[dbo].[Subject](
-                                    [IdSubject],
                                     [Name],
                                     [Description],
                                     [Credtis],
                                     [Hours])
                               Values
-                                    (@IdSubject,
+                                    (
                                      @Name,
                                      @Description,
                                      @Credits,
