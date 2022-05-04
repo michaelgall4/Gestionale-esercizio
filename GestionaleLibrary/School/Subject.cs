@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GestionaleLibrary.School
 {
-    public class Subject : Teacher
+    public class Subject 
     {
         public int IdSubject { get; set; }
         public string Name { get; set; }
