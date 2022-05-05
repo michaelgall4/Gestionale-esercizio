@@ -11,7 +11,7 @@ namespace GestionaleLibrary.Persister
             ConnectionString = connectionString;
         }
 
-        public bool AddSubject(Subject subject)
+        public int AddSubject(Subject subject)
         {
             var sql = @"INSERT INTO [dbo].[Subject](
                                     [Name],
@@ -34,7 +34,7 @@ namespace GestionaleLibrary.Persister
             command.Parameters.AddWithValue("@Description", subject.Description);
             command.Parameters.AddWithValue("@Credits", subject.Credits);
             command.Parameters.AddWithValue("@Hours", subject.Hours);
-            return command.ExecuteNonQuery() > 0;
+            return Convert.ToInt32(command.ExecuteScalar());
         }
 
 
@@ -45,7 +45,7 @@ namespace GestionaleLibrary.Persister
                               [Description] = @Description,
                               [Credits] = @Credits,
                               [Hours] = @Hours
-                          WHERE @IdSubject = IdSubject";
+                          WHERE IdSubject = @IdSubject";
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
             using var command = new SqlCommand(sql, connection);

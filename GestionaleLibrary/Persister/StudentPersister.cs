@@ -11,7 +11,7 @@ namespace GestionaleLibrary.Persister
             ConnectionString = connectionString;
         }
 
-        public bool AddStudent(Student student)
+        public int AddStudent(Student student)
         {
             var sql = @"INSERT INTO [dbo].[Student](
                                     [IdPerson],
@@ -30,7 +30,7 @@ namespace GestionaleLibrary.Persister
             command.Parameters.AddWithValue("@IdPerson", student.Id);
             command.Parameters.AddWithValue("@Matricola", student.Matricola);
             command.Parameters.AddWithValue("@DataIscrizione", student.DataIscrizione);
-            return command.ExecuteNonQuery() > 0;
+            return Convert.ToInt32(command.ExecuteScalar());
         }
 
 

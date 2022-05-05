@@ -21,7 +21,7 @@ namespace Gestionale.Handler
             };
 
             var subjectPersister = new SubjectPersister(connectionString);
-            return subjectPersister.AddSubject(subject);
+            return subjectPersister.AddSubject(subject)>0;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Gestionale
             };
 
             var personPersister = new PersonPersister(connectionString);
-            return personPersister.AddPerson(person);
+            return personPersister.AddPerson(person)>0;
         }
 
         public bool DeletePersona(int Id)

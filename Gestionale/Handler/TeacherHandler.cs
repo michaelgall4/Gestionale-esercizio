@@ -26,7 +26,7 @@ namespace Gestionale.Handler
             };
 
             var teacherPersister = new TeacherPersister(connectionString);
-            return teacherPersister.AddTeacher(teacher);
+            return teacherPersister.AddTeacher(teacher)>0;
         }
     }
 }

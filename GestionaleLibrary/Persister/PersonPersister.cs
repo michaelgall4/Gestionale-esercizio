@@ -12,7 +12,7 @@ namespace GestionaleLibrary.Persister
             ConnectionString = connectionString;
         }
 
-        public bool AddPerson(Person person)
+        public int AddPerson(Person person)
         {
             var sql = @"INSERT INTO [dbo].[Person](
                                     [Name],
@@ -38,7 +38,7 @@ namespace GestionaleLibrary.Persister
             command.Parameters.AddWithValue("@BirthDay", person.BirthDay);
             command.Parameters.AddWithValue("@Gender", person.Gender);
             command.Parameters.AddWithValue("@Address", person.Address);
-            return command.ExecuteNonQuery() > 0;
+            return Convert.ToInt32(command.ExecuteScalar());
         }
 
 
@@ -50,7 +50,7 @@ namespace GestionaleLibrary.Persister
                               [BirthDay] = @BirthDay,
                               [Gender] = @Gender,
                               [Address] = @Address
-                          WHERE @Id = Id";
+                          WHERE Id = @Id";
             var connection = new SqlConnection(ConnectionString);
             connection.Open();
             var command = new SqlCommand(sql, connection);
