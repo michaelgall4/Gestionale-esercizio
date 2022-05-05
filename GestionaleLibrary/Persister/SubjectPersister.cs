@@ -11,25 +11,25 @@ namespace GestionaleLibrary.Persister
             ConnectionString = connectionString;
         }
 
-        public bool Add(Subject subject)
+        public bool AddSubject(Subject subject)
         {
-            var sql = @"INSERT INTO [Gestionale].[dbo].[Subject](
+            var sql = @"INSERT INTO [dbo].[Subject](
                                     [Name],
                                     [Description],
-                                    [Credtis],
+                                    [Credits],
                                     [Hours])
                               Values
                                     (
                                      @Name,
                                      @Description,
                                      @Credits,
-                                     @Hours)";
+                                     @Hours)
+                              SELECT @@IDENTITY AS 'Identity'";
 
 
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
             using var command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@IdSubject", subject.IdSubject);
             command.Parameters.AddWithValue("@Name", subject.Name);
             command.Parameters.AddWithValue("@Description", subject.Description);
             command.Parameters.AddWithValue("@Credits", subject.Credits);
@@ -38,9 +38,9 @@ namespace GestionaleLibrary.Persister
         }
 
 
-        public bool Update(Subject subject)
+        public bool UpdateSubject(Subject subject)
         {
-            var sql = @"UPDATE [Gestionale].[dbo].[Subject]
+            var sql = @"UPDATE [dbo].[Subject]
                           SET [Name] = @Name,
                               [Description] = @Description,
                               [Credits] = @Credits,
@@ -58,9 +58,9 @@ namespace GestionaleLibrary.Persister
         }
 
 
-        public bool Delete(int IdSubject)
+        public bool DeleteSubject(int IdSubject)
         {
-            var sql = @"DELETE FROM [Gestionale].[dbo].[Subject]
+            var sql = @"DELETE FROM [dbo].[Subject]
                         WHERE IdSubject = @IdSubject";
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
@@ -76,7 +76,8 @@ namespace GestionaleLibrary.Persister
                                [Description],
                                [Credits],
                                [Hours],
-                        FROM [Gestionale].[dbo].[Subject]";
+                        FROM [dbo].[Subject]
+                        WHERE IdSubject = @IdSubject";
 
             var listResult = new List<Subject>();
 

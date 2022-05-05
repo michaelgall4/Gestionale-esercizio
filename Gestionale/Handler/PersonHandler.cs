@@ -8,8 +8,8 @@ namespace Gestionale
     
     public class PersonHandler
     {
-        //private readonly string connectionString = "Server=ACADEMYNETPD03\\SQLEXPRESS;DataBase=Gestionale;Trusted_Connection=true";
-        private readonly string connectionString = "Server=.;DataBase=Gestionale;Trusted_Connection=true";
+        private readonly string connectionString = "Server=ACADEMYNETPD03\\SQLEXPRESS;DataBase=Gestionale;Trusted_Connection=true";
+
 
 
         public bool AddPersona()
@@ -17,15 +17,21 @@ namespace Gestionale
             var person = new Person
             {
 
-                Name = "Mario",
-                Surname = "Draghi",
-                BirthDay = new DateTime(1947, 07, 12),
+                Name = "Sergio",
+                Surname = "Matterella",
+                BirthDay = new DateTime(1934, 08, 15),
                 Gender = "Male",
                 Address = "Via Italia"
             };
 
             var personPersister = new PersonPersister(connectionString);
-            return personPersister.Add(person);
+            return personPersister.AddPerson(person);
+        }
+
+        public bool DeletePersona(int Id)
+        {
+            var personPersister = new PersonPersister(connectionString);
+            return personPersister.DeletePerson(15);
         }
     }
 }

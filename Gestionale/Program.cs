@@ -5,10 +5,19 @@ using GestionaleLibrary.Persister;
 using Gestionale;
 using Gestionale.Handler;
 
-var personHandler = new PersonHandler();
-personHandler.AddPersona();
+//var personHandler = new PersonHandler();
+//personHandler.AddPersona();
 
-var subjectHandler = new SubjectHandler();
-subjectHandler.AddMateria();
+//var subjectHandler = new SubjectHandler();
+//subjectHandler.AddMateria();
+
+//var studentHandler = new StudentHandler();
+//studentHandler.AddStudente();
+
+//var personHandler = new PersonHandler();
+//personHandler.DeletePersona(15);
+
+var teacherHandler = new TeacherHandler();
+teacherHandler.AddDocente();
 
 Console.ReadLine();

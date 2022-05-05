@@ -12,7 +12,7 @@ namespace GestionaleLibrary.Persister
             ConnectionString = connectionString;
         }
 
-        public bool Add(Person person)
+        public bool AddPerson(Person person)
         {
             var sql = @"INSERT INTO [dbo].[Person](
                                     [Name],
@@ -42,9 +42,9 @@ namespace GestionaleLibrary.Persister
         }
 
 
-        public void Update(Person person)
+        public void UpdatePerson(Person person)
         {
-            var sql = @"UPDATE [Gestionale].[dbo].[Person]
+            var sql = @"UPDATE [dbo].[Person]
                           SET [Name] = @Name,
                               [Surname] = @Surname,
                               [BirthDay] = @BirthDay,
@@ -64,15 +64,15 @@ namespace GestionaleLibrary.Persister
         }
 
 
-        public void Delete(int Id)
+        public bool DeletePerson(int Id)
         {
-            var sql = @"DELETE FROM [Gestionale].[dbo].[Person]
+            var sql = @"DELETE FROM [dbo].[Person]
                         WHERE Id = @Id";
-            var connection = new SqlConnection(ConnectionString);
+            using var connection = new SqlConnection(ConnectionString);
             connection.Open();
-            var command = new SqlCommand(sql, connection);
+            using var command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@Id", Id);
-            command.ExecuteNonQuery();
+            return command.ExecuteNonQuery() > 0;
         }
 
         public List<Person> GetPerson(int Id)
@@ -83,7 +83,7 @@ namespace GestionaleLibrary.Persister
                                [BirthDay],
                                [Gender],
                                [Address]
-                        FROM [Gestionale].[dbo].[Person]
+                        FROM [dbo].[Person]
                         WHERE Id = @Id";
 
             var listResult = new List<Person>();
